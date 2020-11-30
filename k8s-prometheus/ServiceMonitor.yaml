@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: k8seggjs
+  name: k8seggjs-metrics
+  labels:
+    k8s-app: k8seggjs-metrics
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/scheme: http
+    prometheus.io/path: /metrics
+    prometheus.io/port: "7777"
+spec:
+  selector:
+    app.kubernetes.io/name: k8seggjs
+  ports:
+  - name: k8seggjs-metrics
+    port: 7777
+    targetPort: 7777
+    protocol: TCP
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: k8seggjs
+  namespace: monitoring
+spec:
+  endpoints:
+  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    interval: 5s
+    port: k8seggjs-metrics
+  jobLabel: k8s-app
+  namespaceSelector:
+    matchNames:
+    - k8seggjs
+  selector:
+    matchLabels:
+      k8s-app: k8seggjs-metrics
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleList
+items:
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    name: prometheus-k8s-k8seggjs
+    namespace: k8seggjs
+  rules:
+  - apiGroups:
+    - ""
+    resources:
+    - services
+    - endpoints
+    - pods
+    verbs:
+    - get
+    - list
+    - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBindingList
+items:
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    name: prometheus-k8s-k8seggjs
+    namespace: k8seggjs
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: prometheus-k8s-k8seggjs
+  subjects:
+  - kind: ServiceAccount
+    name: prometheus-k8s
+    namespace: monitoring

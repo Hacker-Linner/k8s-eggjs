@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "k8seggjs.fullname" . }}-test-connection"
+  labels:
+{{ include "k8seggjs.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args:  ['{{ include "k8seggjs.fullname" . }}:{{ .Values.service.apiPort }}']
+  restartPolicy: Never
