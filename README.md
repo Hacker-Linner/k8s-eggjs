@@ -18,3 +18,10 @@
     <img src="app/public/images/me-qrcode.jpeg" width="200px"/>
   </div>
 </div>
+
+
+![](app/public/images/k8s-1.png)
+
+![](app/public/images/prome-1.png)
+
+![](app/public/images/grafana-6.png)
