@@ -2,7 +2,7 @@
 
 <img src="app/public/images/banner.png" width="700px"/>
 
-**[EggJS 云原生应用硬核实战（Kubernetes+Traefik+Helm+Prometheus+Grafana）教程]()**
+**[EggJS 云原生应用硬核实战（Kubernetes+Traefik+Helm+Prometheus+Grafana）教程](https://juejin.cn/post/6900790776909791240)**
 
 <div style="display:flex;">
   <div>
