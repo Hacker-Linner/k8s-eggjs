@@ -18,7 +18,7 @@ class HomeController extends Controller {
       <div style="display:flex;">
         <div>
           <p>前端云原生群</p>
-          <img src="public/images/team-qrcode.png" width="200px"/>
+          <img src="public/images/team-qrcode.jpeg" width="200px"/>
         </div>
         <div>
           <p>公众号</p>

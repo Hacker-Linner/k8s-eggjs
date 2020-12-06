@@ -12,7 +12,7 @@
 
 前端云原生群
 
-<img src="app/public/images/team-qrcode.png" width="200px"/>
+<img src="app/public/images/team-qrcode.jpeg" width="200px"/>
 
 公众号
 
