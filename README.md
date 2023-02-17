@@ -10,10 +10,6 @@
 
 ![](app/public/images/grafana-6.png)
 
-前端云原生群
-
-<img src="app/public/images/team-qrcode.jpeg" width="200px"/>
-
 公众号
 
 <img src="app/public/images/tea-qrcode.png" width="200px"/>
